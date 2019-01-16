@@ -1,8 +1,13 @@
+.ui.cards {
+  margin: 0;
+}
 .card {
-  width: 100% !important;
+  width: 80% !important;
   height: 100vh;
   display: table !important;
   text-align: center;
+  position: relative;
+  margin: 0 auto !important;
 }
 .card .content {
   display: table-cell;
@@ -18,4 +23,10 @@
 .card .content .description {
   font-size: 1.5em;
   margin-bottom: 10px;
+}
+.card .count {
+  position: absolute;
+  font-size: 1.5em;
+  right: 1em;
+  top: 1em;
 }

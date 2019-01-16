@@ -23,3 +23,10 @@ export const nextStatus = status => {
     payload: status
   };
 };
+
+export const incorrectAnswer = index => {
+  return {
+    type: "INCORRECT_ANSWER",
+    payload: index
+  };
+};

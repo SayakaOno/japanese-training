@@ -1,7 +1,12 @@
 import React from "react";
+import ShowQuiz from "./ShowQuiz";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <ShowQuiz />
+    </div>
+  );
 };
 
 export default App;

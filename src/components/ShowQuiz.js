@@ -6,8 +6,6 @@ import {
   nextStatus,
   incorrectAnswer
 } from "../actions";
-import Result from "./Result";
-import Setting from "./Setting";
 
 const ANSWERING = "answering";
 const SHOWING_ANSWER = "showing_answer";
@@ -44,16 +42,13 @@ class ShowQuiz extends React.Component {
   };
 
   render() {
-    return this.props.currentStatus === FINISHED ? (
-      <Result />
-    ) : (
+    return (
       <div
         ref={this.card}
         className="ui cards"
         onKeyDown={this.handleKeydown}
         tabIndex="0"
       >
-        <Setting />
         <div className="card">
           <div className="count">
             {this.props.currentQuiz + 1}/{this.props.quizes.length}

@@ -6,6 +6,7 @@ import {
   nextStatus,
   incorrectAnswer
 } from "../actions";
+import Result from "./Result";
 
 const ANSWERING = "answering";
 const SHOWING_ANSWER = "showing_answer";
@@ -42,7 +43,9 @@ class ShowQuiz extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.currentStatus === FINISHED ? (
+      <Result />
+    ) : (
       <div
         ref={this.card}
         className="ui cards"

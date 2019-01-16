@@ -31,18 +31,23 @@ class ShowQuiz extends React.Component {
       <div className="ui cards" onKeyDown={this.handleKeydown} tabIndex="0">
         <div className="card">
           <div className="content">
-            <div className="header">
-              {this.props.quizes[this.props.currentQuiz].translation}
+            <div className="question">
+              <div className="description">Translate this!</div>
+              <div className="ui huge header">
+                {this.props.quizes[this.props.currentQuiz].translation}
+              </div>
             </div>
-            <div className="header">
+            <div className="answer">
               {this.props.currentStatus === SHOWING_ANSWER ||
-              this.props.currentStatus === MARKING
-                ? this.props.quizes[this.props.currentQuiz].answer
-                : null}
+              this.props.currentStatus === MARKING ? (
+                <React.Fragment>
+                  <div className="description">Answer:</div>
+                  <div className="ui huge header">
+                    {this.props.quizes[this.props.currentQuiz].answer}
+                  </div>
+                </React.Fragment>
+              ) : null}
             </div>
-            {/* <div className="description">
-              Elliot Fu is a film-maker from New York.
-            </div> */}
           </div>
         </div>
       </div>

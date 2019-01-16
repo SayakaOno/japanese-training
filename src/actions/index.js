@@ -23,9 +23,3 @@ export const nextStatus = status => {
     payload: status
   };
 };
-
-export const getStatus = () => {
-  return {
-    type: "GET_STATUS"
-  };
-};

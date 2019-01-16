@@ -1,0 +1,21 @@
+.card {
+  width: 100% !important;
+  height: 100vh;
+  display: table !important;
+  text-align: center;
+}
+.card .content {
+  display: table-cell;
+  vertical-align: middle;
+}
+.card .content .answer {
+  height: 50%;
+  margin-top: 30px;
+}
+.ui.huge.header {
+  margin-top: 0;
+}
+.card .content .description {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}

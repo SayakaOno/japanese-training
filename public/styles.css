@@ -37,18 +37,20 @@
   height: 100vh;
 }
 .result .container {
-  margin-top: 20vh;
+  padding-top: 20vh;
 }
-.result p {
+.result p.description {
   font-size: 1.5em;
+}
+.result ul p {
+  margin: 0;
 }
 .result ul li {
   margin-bottom: 10px;
 }
 .result ul .en {
   font-weight: bold;
-  font-size: 1.5em;
-  pading-bottom: 5px;
+  font-size: 1.7em;
 }
 .result ul .ja {
   font-size: 1.3em;

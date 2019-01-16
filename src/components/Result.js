@@ -8,13 +8,14 @@ class Result extends React.Component {
       <div className="result">
         <div className="container">
           <h1 className="ui huge header">Well done!</h1>
-          <p>Here is the sentences that you might want to review:</p>
+          <p className="description">
+            Here is the sentences that you might want to review:
+          </p>
           <ul>
             {incorrectAnswers.map(index => (
               <li key={quizes[index].id}>
-                <span className="en">{quizes[index].answer}</span>
-                <br />
-                <span className="ja">( {quizes[index].translation} )</span>
+                <p className="en">{quizes[index].answer}</p>
+                <p className="ja">( {quizes[index].translation} )</p>
               </li>
             ))}
           </ul>

@@ -7,6 +7,7 @@ import {
   incorrectAnswer
 } from "../actions";
 import Result from "./Result";
+import Setting from "./Setting";
 
 const ANSWERING = "answering";
 const SHOWING_ANSWER = "showing_answer";
@@ -52,6 +53,7 @@ class ShowQuiz extends React.Component {
         onKeyDown={this.handleKeydown}
         tabIndex="0"
       >
+        <Setting />
         <div className="card">
           <div className="count">
             {this.props.currentQuiz + 1}/{this.props.quizes.length}

@@ -48,6 +48,11 @@ class ShowQuiz extends React.Component {
     }
   }
 
+  showAnswer = () => {
+    this.props.nextStatus(SHOWING_ANSWER);
+    clearInterval(this.timerId);
+  };
+
   mark = () => {
     if (this.props.currentQuiz === this.props.quizes.length - 1) {
       this.props.nextStatus(FINISHED);
@@ -76,8 +81,7 @@ class ShowQuiz extends React.Component {
 
   handleKeydown = e => {
     if (this.props.currentStatus === ANSWERING && e.key === "Enter") {
-      this.props.nextStatus(SHOWING_ANSWER);
-      clearInterval(this.timerId);
+      this.showAnswer();
     } else if (this.props.currentStatus === SHOWING_ANSWER) {
       if (e.key === "ArrowLeft") {
         this.handleIncorrectAnswer();
@@ -91,10 +95,7 @@ class ShowQuiz extends React.Component {
     if (this.props.currentStatus === ANSWERING) {
       return (
         <div className="show-answer">
-          <button
-            className="button ui primary"
-            onClick={() => this.props.nextStatus(SHOWING_ANSWER)}
-          >
+          <button className="button ui primary" onClick={this.showAnswer}>
             Show Answer
           </button>
           <p className="description">or press "Enter" to show answer!</p>

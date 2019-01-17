@@ -27,7 +27,13 @@ export const quizesReducer = (state = [], action) => {
 export const quizeSettingReducer = (state = {}, action) => {
   switch (action.type) {
     case "START_QUIZ":
-      return action.payload;
+      return {
+        ...action.payload,
+        duration:
+          action.payload.duration || action.payload.duration !== "select"
+            ? +action.payload.duration.slice(0, -4)
+            : null
+      };
     default:
       return state;
   }

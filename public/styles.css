@@ -20,7 +20,7 @@
   width: 60% !important;
   display: inline-block !important;
 }
-.setting a {
+.setting button {
   width: 75px;
   display: block !important;
   margin: 80px auto 0 auto !important;
@@ -77,6 +77,11 @@
 }
 .mark-answer .description {
   margin-top: 20px !important;
+}
+.ui.progress .bar {
+  min-width: 0;
+  width: 100%;
+  transition: none !important;
 }
 
 /* Result */

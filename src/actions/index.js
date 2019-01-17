@@ -11,10 +11,10 @@ export const nextStatus = status => {
   };
 };
 
-export const incorrectAnswer = index => {
+export const incorrectAnswer = quiz => {
   return {
     type: "INCORRECT_ANSWER",
-    payload: index
+    payload: quiz
   };
 };
 
@@ -34,5 +34,12 @@ export const finishQuiz = () => {
 export const backToHome = () => {
   return {
     type: "BACK_TO_HOME"
+  };
+};
+
+export const spendingTime = startTime => {
+  return {
+    type: "SPENDING_TIME",
+    payload: startTime
   };
 };

@@ -5,6 +5,7 @@ import {
   currentQuizReducer,
   quizeSettingReducer
 } from "./quizesReducer";
+import { startTimeReducer, spendingTimeReducer } from "./timeReducers";
 import statusReducer from "./statusReducer";
 import markingReducer from "./markingReducer";
 
@@ -12,7 +13,9 @@ export default combineReducers({
   quizes: quizesReducer,
   currentQuiz: currentQuizReducer,
   status: statusReducer,
-  incorrectAnswers: markingReducer,
+  incorrectQuizes: markingReducer,
   form: formReducer,
-  setting: quizeSettingReducer
+  setting: quizeSettingReducer,
+  startTime: startTimeReducer,
+  spentTime: spendingTimeReducer
 });

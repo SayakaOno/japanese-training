@@ -2,7 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import history from "../history";
-import { nextQuiz, nextStatus, incorrectAnswer, finishQuiz } from "../actions";
+import {
+  nextQuiz,
+  nextStatus,
+  incorrectAnswer,
+  finishQuiz,
+  spendingTime
+} from "../actions";
 
 const ANSWERING = "answering";
 const SHOWING_ANSWER = "showing_answer";
@@ -13,11 +19,32 @@ class ShowQuiz extends React.Component {
     super(props);
 
     this.card = React.createRef();
+    this.bar = React.createRef();
+    this.timerId = null;
   }
 
   componentDidMount() {
     if (this.card.current) {
       this.card.current.focus();
+    }
+    if (this.props.duration) {
+      this.timerId = setInterval(
+        () => this.props.spendingTime(this.props.startTime),
+        10
+      );
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.currentStatus === ANSWERING && this.props.duration) {
+      if (this.props.duration * 1000 - this.props.spentTime < 0) {
+        this.props.nextStatus(SHOWING_ANSWER);
+        clearInterval(this.timerId);
+      }
+      const spentTimePercentage =
+        this.props.spentTime / (this.props.duration * 1000);
+      this.bar.current.style.width =
+        Math.round((1 - spentTimePercentage) * 100) + "%";
     }
   }
 
@@ -29,21 +56,28 @@ class ShowQuiz extends React.Component {
     } else {
       this.props.nextStatus(ANSWERING);
       this.props.nextQuiz();
+      if (this.props.duration) {
+        this.timerId = setInterval(
+          () => this.props.spendingTime(this.props.startTime),
+          10
+        );
+      }
     }
   };
 
-  addIncorrectAnswer = () => {
-    this.props.incorrectAnswer(this.props.quizes[this.props.currentQuiz].id);
+  addIncorrectQuize = () => {
+    this.props.incorrectAnswer(this.props.quizes[this.props.currentQuiz]);
   };
 
   handleIncorrectAnswer = () => {
-    this.addIncorrectAnswer();
+    this.addIncorrectQuize();
     this.mark();
   };
 
   handleKeydown = e => {
     if (this.props.currentStatus === ANSWERING && e.key === "Enter") {
       this.props.nextStatus(SHOWING_ANSWER);
+      clearInterval(this.timerId);
     } else if (this.props.currentStatus === SHOWING_ANSWER) {
       if (e.key === "ArrowLeft") {
         this.handleIncorrectAnswer();
@@ -118,6 +152,11 @@ class ShowQuiz extends React.Component {
               ) : null}
             </div>
             {this.renderNavigation()}
+            {this.props.duration ? (
+              <div className="ui yellow progress">
+                <div className="bar" ref={this.bar} />
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -136,11 +175,14 @@ const mapStateToProps = state => {
     quizes: state.quizes,
     currentQuiz: state.currentQuiz,
     currentStatus: state.status,
-    incorrectAnswers: state.incorrectAnswers
+    incorrectQuizes: state.incorrectQuizes,
+    startTime: state.startTime,
+    spentTime: state.spentTime,
+    duration: state.setting.duration
   };
 };
 
 export default connect(
   mapStateToProps,
-  { nextStatus, nextQuiz, incorrectAnswer, finishQuiz }
+  { nextStatus, nextQuiz, incorrectAnswer, finishQuiz, spendingTime }
 )(ShowQuiz);

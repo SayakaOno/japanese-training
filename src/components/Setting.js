@@ -32,7 +32,6 @@ class Setting extends React.Component {
   };
 
   onSubmit = formValues => {
-    console.log(formValues);
     this.props.startQuiz(formValues);
     history.push("/quiz");
   };
@@ -66,15 +65,7 @@ class Setting extends React.Component {
           <Field
             name="duration"
             label="duration"
-            options={[
-              "unlimited",
-              "5 sec",
-              "6 sec",
-              "7 sec",
-              "8 sec",
-              "9 sec",
-              "10 sec"
-            ]}
+            options={["5 sec", "6 sec", "7 sec", "8 sec", "9 sec", "10 sec"]}
             component={this.renderFormElement}
           />
           <Field
@@ -86,7 +77,7 @@ class Setting extends React.Component {
           <Field
             name="numberOfQuestions"
             label="number of questions"
-            options={[10, 15, 20]}
+            options={[1, 2, 3, 4, 5, 10, 15, 20]}
             component={this.renderFormElement}
           />
           <button className="button ui primary">Start</button>

@@ -5,7 +5,8 @@ import {
   selectQuizes,
   nextQuiz,
   nextStatus,
-  incorrectAnswer
+  incorrectAnswer,
+  finishQuiz
 } from "../actions";
 
 const ANSWERING = "answering";
@@ -34,6 +35,7 @@ class ShowQuiz extends React.Component {
       }
       if (this.props.currentQuiz === this.props.quizes.length - 1) {
         this.props.nextStatus(FINISHED);
+        this.props.finishQuiz();
         history.push("/result");
       } else {
         this.props.nextStatus(ANSWERING);
@@ -89,5 +91,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { selectQuizes, nextStatus, nextQuiz, incorrectAnswer }
+  { selectQuizes, nextStatus, nextQuiz, incorrectAnswer, finishQuiz }
 )(ShowQuiz);

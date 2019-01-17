@@ -30,3 +30,9 @@ export const incorrectAnswer = index => {
     payload: index
   };
 };
+
+export const finishQuiz = () => {
+  return {
+    type: "FINISH_QUIZ"
+  };
+};

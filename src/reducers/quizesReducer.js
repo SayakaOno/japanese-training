@@ -5,11 +5,12 @@ export const quizesReducer = () => {
 };
 
 export const currentQuizReducer = (state = 0, action) => {
-  if (!action) {
-    return;
+  switch (action.type) {
+    case "NEXT_QUIZ":
+      return state + 1;
+    case "FINISH_QUIZ":
+      return 0;
+    default:
+      return state;
   }
-  if (action.type === "NEXT_QUIZ") {
-    return state + 1;
-  }
-  return state;
 };

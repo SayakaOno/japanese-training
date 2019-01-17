@@ -48,6 +48,12 @@ class Setting extends React.Component {
             component={this.renderFormElement}
           />
           <Field
+            name="order"
+            label="order"
+            options={["random", "sequence"]}
+            component={this.renderFormElement}
+          />
+          <Field
             name="filter"
             label="filter"
             options={["all questions", "incorrenct questions"]}
@@ -92,6 +98,9 @@ const validate = formValues => {
   const errors = {};
   if (!formValues.level || formValues.level === "select") {
     errors.level = "You must choose level";
+  }
+  if (!formValues.order || formValues.order === "select") {
+    errors.order = "You must choose order";
   }
   if (!formValues.filter || formValues.filter === "select") {
     errors.filter = "You must choose filter";

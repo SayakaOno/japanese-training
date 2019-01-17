@@ -23,7 +23,7 @@
 .setting a {
   width: 75px;
   display: block !important;
-  margin: 50px auto !important;
+  margin: 80px auto 0 auto !important;
 }
 
 /* ShowQuiz */
@@ -88,4 +88,9 @@
 }
 .result ul .ja {
   font-size: 1.3em;
+}
+.result .button {
+  display: block;
+  width: 150px;
+  margin: 80px auto 0 auto;
 }

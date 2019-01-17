@@ -15,7 +15,10 @@ export const quizesReducer = (state = [], action) => {
       if (action.payload.order === "random") {
         filteredQuiz = shuffle(filteredQuiz);
       }
-      if (action.payload.numberOfQuestions) {
+      if (
+        action.payload.numberOfQuestions &&
+        action.payload.numberOfQuestions !== "select"
+      ) {
         filteredQuiz.length = +action.payload.numberOfQuestions;
       }
       return filteredQuiz;
@@ -30,7 +33,7 @@ export const quizeSettingReducer = (state = {}, action) => {
       return {
         ...action.payload,
         duration:
-          action.payload.duration || action.payload.duration !== "select"
+          action.payload.duration && action.payload.duration !== "select"
             ? +action.payload.duration.slice(0, -4)
             : null
       };

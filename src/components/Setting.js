@@ -1,8 +1,10 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { startQuiz } from "../actions";
+import { startQuiz, nextStatus } from "../actions";
 import history from "../history";
+
+const ANSWERING = "answering";
 
 class Setting extends React.Component {
   renderError = ({ error, touched }) => {
@@ -33,6 +35,7 @@ class Setting extends React.Component {
 
   onSubmit = formValues => {
     this.props.startQuiz(formValues);
+    this.props.nextStatus(ANSWERING);
     history.push("/quiz");
   };
 
@@ -56,24 +59,24 @@ class Setting extends React.Component {
             options={["random", "sequence"]}
             component={this.renderFormElement}
           />
-          <Field
+          {/* <Field
             name="filter"
             label="filter"
             options={["all questions", "incorrenct questions"]}
             component={this.renderFormElement}
-          />
+          /> */}
           <Field
             name="duration"
             label="duration"
             options={["5 sec", "6 sec", "7 sec", "8 sec", "9 sec", "10 sec"]}
             component={this.renderFormElement}
           />
-          <Field
+          {/* <Field
             name="mode"
             label="mode"
             options={["Translating mode", "Answering mode"]}
             component={this.renderFormElement}
-          />
+          /> */}
           <Field
             name="numberOfQuestions"
             label="number of questions"
@@ -120,5 +123,5 @@ const formWrapped = reduxForm({
 
 export default connect(
   null,
-  { startQuiz }
+  { startQuiz, nextStatus }
 )(formWrapped);

@@ -5,7 +5,7 @@ import { backToHome } from "../actions";
 
 class Result extends React.Component {
   render() {
-    const { quizes, incorrectQuizes } = this.props;
+    const { incorrectQuizes } = this.props;
     return (
       <div className="result">
         <div className="container">

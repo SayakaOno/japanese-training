@@ -11,6 +11,7 @@ export const startTimeReducer = (state = 0, action) => {
 export const spendingTimeReducer = (state = 0, action) => {
   switch (action.type) {
     case "NEXT_QUIZ":
+    case "FINISH_QUIZ":
       return 0;
     case "SPENDING_TIME":
       return new Date() - action.payload;

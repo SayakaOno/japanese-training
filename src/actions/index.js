@@ -31,8 +31,20 @@ export const incorrectAnswer = index => {
   };
 };
 
+export const startQuiz = () => {
+  return {
+    type: "START_QUIZ"
+  };
+};
+
 export const finishQuiz = () => {
   return {
     type: "FINISH_QUIZ"
+  };
+};
+
+export const backToHome = () => {
+  return {
+    type: "BACK_TO_HOME"
   };
 };

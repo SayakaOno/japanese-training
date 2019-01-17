@@ -1,6 +1,12 @@
 export default (state = [], action) => {
-  if (action.type === "INCORRECT_ANSWER") {
-    return state.concat(action.payload);
+  switch (action.type) {
+    case "INCORRECT_ANSWER":
+      return state.concat(action.payload);
+    case "QUIZES_SELECTED":
+      return [];
+    case "BACK_TO_HOME":
+      return [];
+    default:
+      return state;
   }
-  return state;
 };

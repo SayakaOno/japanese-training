@@ -1,6 +1,8 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { startQuiz } from "../actions";
 
 class Setting extends React.Component {
   renderError = ({ error, touched }) => {
@@ -85,7 +87,11 @@ class Setting extends React.Component {
             options={[10, 15, 20]}
             component={this.renderFormElement}
           />
-          <Link to="/quiz" className="button ui primary">
+          <Link
+            to="/quiz"
+            className="button ui primary"
+            onClick={this.props.startQuiz}
+          >
             Start
           </Link>
         </form>
@@ -120,7 +126,12 @@ const validate = formValues => {
   // return errors;
 };
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: "setting",
   validate
 })(Setting);
+
+export default connect(
+  null,
+  { startQuiz }
+)(formWrapped);

@@ -47,8 +47,9 @@
   outline: none !important;
 }
 .card .content .answer {
-  height: 50%;
+  height: 20%;
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 .ui.huge.header {
   margin-top: 0;
@@ -63,12 +64,30 @@
   right: 1em;
   top: 1em;
 }
+.show-answer button {
+  margin-bottom: 20px !important;
+}
+.mark-answer button.ui {
+  margin: 0 30px !important;
+  width: 150px;
+}
+.mark-answer i {
+  margin: 0 !important;
+  font-size: 1.3em;
+}
+.mark-answer .description {
+  margin-top: 20px !important;
+}
 
 /* Result */
 .result {
   max-width: 500px;
   margin: 0 auto;
   height: 100vh;
+}
+.result h1 {
+  text-align: center;
+  margin-bottom: 50px;
 }
 .result .container {
   padding-top: 20vh;

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { backToHome } from "../actions";
 
 class Result extends React.Component {
   render() {
@@ -24,7 +25,11 @@ class Result extends React.Component {
               </ul>
             </React.Fragment>
           ) : null}
-          <Link to="/" className="button ui primary">
+          <Link
+            to="/"
+            className="button ui primary"
+            onClick={this.props.backToHome}
+          >
             Back to Home
           </Link>
         </div>
@@ -37,4 +42,7 @@ const mapStateToProps = state => {
   return { incorrectAnswers: state.incorrectAnswers, quizes: state.quizes };
 };
 
-export default connect(mapStateToProps)(Result);
+export default connect(
+  mapStateToProps,
+  { backToHome }
+)(Result);

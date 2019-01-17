@@ -1,17 +1,50 @@
+/* Setting */
+.ui.container.setting {
+  max-width: 500px !important;
+  height: 100vh;
+  padding-top: 10vh;
+  margin: 0 auto !important;
+}
+.ui.container.setting h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.setting form {
+  font-size: 1.5em !important;
+}
+.setting label {
+  width: 40%;
+  display: inline-block !important;
+}
+.setting select {
+  width: 60% !important;
+  display: inline-block !important;
+}
+.setting a {
+  width: 75px;
+  display: block !important;
+  margin: 50px auto !important;
+}
+
+/* ShowQuiz */
 .ui.cards {
   margin: 0;
 }
 .card {
   width: 80% !important;
-  height: 100vh;
+  height: 90vh;
   display: table !important;
   text-align: center;
   position: relative;
   margin: 0 auto !important;
+  margin-top: 5vh !important;
 }
 .card .content {
   display: table-cell;
   vertical-align: middle;
+}
+.ui.cards:focus {
+  outline: none !important;
 }
 .card .content .answer {
   height: 50%;
@@ -31,6 +64,7 @@
   top: 1em;
 }
 
+/* Result */
 .result {
   max-width: 500px;
   margin: 0 auto;

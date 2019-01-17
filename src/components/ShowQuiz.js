@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import history from "../history";
 import {
   selectQuizes,
   nextQuiz,
@@ -33,7 +34,7 @@ class ShowQuiz extends React.Component {
       }
       if (this.props.currentQuiz === this.props.quizes.length - 1) {
         this.props.nextStatus(FINISHED);
-        console.log("finished!");
+        history.push("/result");
       } else {
         this.props.nextStatus(ANSWERING);
         this.props.nextQuiz();

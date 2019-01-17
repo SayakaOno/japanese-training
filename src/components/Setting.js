@@ -1,5 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { Link } from "react-router-dom";
 
 class Setting extends React.Component {
   renderError = ({ error, touched }) => {
@@ -34,7 +35,8 @@ class Setting extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ui container setting">
+        <h1>English speaking training</h1>
         <form
           onSubmit={this.props.handleSubmit(this.onSubmit)}
           className="ui form error"
@@ -77,7 +79,9 @@ class Setting extends React.Component {
             options={[10, 15, 20]}
             component={this.renderFormElement}
           />
-          <button className="button ui">Start</button>
+          <Link to="/quiz" className="button ui primary">
+            Start
+          </Link>
         </form>
       </div>
     );
@@ -104,7 +108,7 @@ const validate = formValues => {
   ) {
     errors.numberOfQuestions = "You must choose number of questions";
   }
-  return errors;
+  // return errors;
 };
 
 export default reduxForm({

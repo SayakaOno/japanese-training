@@ -1,6 +1,10 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import { quizesReducer, currentQuizReducer } from "./quizesReducer";
+import {
+  quizesReducer,
+  currentQuizReducer,
+  quizeSettingReducer
+} from "./quizesReducer";
 import statusReducer from "./statusReducer";
 import markingReducer from "./markingReducer";
 
@@ -9,5 +13,6 @@ export default combineReducers({
   currentQuiz: currentQuizReducer,
   status: statusReducer,
   incorrectAnswers: markingReducer,
-  form: formReducer
+  form: formReducer,
+  setting: quizeSettingReducer
 });

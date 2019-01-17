@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import history from "../history";
-import {
-  selectQuizes,
-  nextQuiz,
-  nextStatus,
-  incorrectAnswer,
-  finishQuiz
-} from "../actions";
+import { nextQuiz, nextStatus, incorrectAnswer, finishQuiz } from "../actions";
 
 const ANSWERING = "answering";
 const SHOWING_ANSWER = "showing_answer";
@@ -21,7 +16,9 @@ class ShowQuiz extends React.Component {
   }
 
   componentDidMount() {
-    this.card.current.focus();
+    if (this.card.current) {
+      this.card.current.focus();
+    }
   }
 
   mark = () => {
@@ -92,7 +89,7 @@ class ShowQuiz extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.quizes.length > 0 ? (
       <div
         ref={this.card}
         className="ui cards"
@@ -124,6 +121,12 @@ class ShowQuiz extends React.Component {
           </div>
         </div>
       </div>
+    ) : (
+      <Redirect
+        to={{
+          pathname: "/"
+        }}
+      />
     );
   }
 }
@@ -139,5 +142,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { selectQuizes, nextStatus, nextQuiz, incorrectAnswer, finishQuiz }
+  { nextStatus, nextQuiz, incorrectAnswer, finishQuiz }
 )(ShowQuiz);

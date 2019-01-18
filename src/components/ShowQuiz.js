@@ -36,6 +36,9 @@ class ShowQuiz extends React.Component {
   }
 
   componentDidUpdate() {
+    if (this.card.current) {
+      this.card.current.focus();
+    }
     if (this.props.currentStatus === ANSWERING && this.props.duration) {
       if (this.props.duration * 1000 - this.props.spentTime < 0) {
         this.props.nextStatus(SHOWING_ANSWER);

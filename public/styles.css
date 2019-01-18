@@ -1,8 +1,13 @@
+body {
+  min-width: 100%;
+}
+
 /* Setting */
 .ui.container.setting {
   max-width: 500px !important;
   height: 100vh;
-  padding-top: 10vh;
+  padding-top: 20vh;
+  padding-bottom: 10vh;
   margin: 0 auto !important;
 }
 .ui.container.setting h1 {
@@ -24,6 +29,34 @@
   width: 75px;
   display: block !important;
   margin: 80px auto 0 auto !important;
+}
+@media only screen and (max-width: 575px) {
+  .ui.container.setting {
+    max-width: 300px !important;
+    box-sizing: border-box;
+    padding: 10vh 10px;
+    height: 100%;
+  }
+  .ui.container.setting h1 {
+    margin-bottom: 30px;
+  }
+  .setting label,
+  .setting select {
+    width: 100% !important;
+  }
+  .setting label {
+    padding-bottom: 5px;
+  }
+  .ui.form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .ui.form select {
+    padding: 5px 10px !important;
+  }
+  .setting button {
+    margin-top: 60px !important;
+  }
 }
 
 /* ShowQuiz */
@@ -69,7 +102,8 @@
 }
 .mark-answer button.ui {
   margin: 0 30px !important;
-  width: 150px;
+  width: 80px;
+  height: 80px;
 }
 .mark-answer i {
   margin: 0 !important;
@@ -82,13 +116,39 @@
   min-width: 0;
   width: 100%;
   transition: none !important;
+  border-radius: 0;!important
+}
+.ui.progress:last-child {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+}
+@media only screen and (max-width: 575px) {
+  .mark-answer button.ui {
+    margin: 0 15px !important;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+  }
+  p.description {
+    display: none;
+  }
+  .card {
+    height: 100vh;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  .ui.huge.header {
+    font-size: 1.5em !important;
+  }
 }
 
 /* Result */
 .result {
   max-width: 500px;
   margin: 0 auto;
-  height: 100vh;
 }
 .result h1 {
   text-align: center;
@@ -96,6 +156,7 @@
 }
 .result .container {
   padding-top: 20vh;
+  padding-bottom: 10vh;
 }
 .result p.description {
   font-size: 1.5em;
@@ -117,4 +178,18 @@
   display: block;
   width: 150px;
   margin: 80px auto 0 auto;
+}
+
+@media only screen and (max-width: 575px) {
+  .result .container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .result ul .en {
+    font-weight: bold;
+    font-size: 1.4em;
+  }
+  .result ul .ja {
+    font-size: 1em;
+  }
 }

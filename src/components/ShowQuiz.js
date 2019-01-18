@@ -108,10 +108,10 @@ class ShowQuiz extends React.Component {
             className="button ui red"
             onClick={this.handleIncorrectAnswer}
           >
-            <i className="times icon" />
+            <i class="x icon" />{" "}
           </button>
-          <button className="button ui primary" onClick={this.mark}>
-            <i className="dot circle icon" />
+          <button className="button ui positive" onClick={this.mark}>
+            <i class="check icon" />
           </button>
           <p className="description">
             <i className="caret left icon" />
@@ -153,12 +153,12 @@ class ShowQuiz extends React.Component {
               ) : null}
             </div>
             {this.renderNavigation()}
-            {this.props.duration ? (
-              <div className="ui yellow progress">
-                <div className="bar" ref={this.bar} />
-              </div>
-            ) : null}
           </div>
+          {this.props.duration ? (
+            <div className="ui yellow progress">
+              <div className="bar" ref={this.bar} />
+            </div>
+          ) : null}
         </div>
       </div>
     ) : (

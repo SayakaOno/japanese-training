@@ -5,8 +5,7 @@ body {
 /* Setting */
 .ui.container.setting {
   max-width: 500px !important;
-  height: 100vh;
-  padding-top: 20vh;
+  padding-top: 15vh;
   padding-bottom: 10vh;
   margin: 0 auto !important;
 }
@@ -101,13 +100,21 @@ body {
   margin-bottom: 20px !important;
 }
 .mark-answer button.ui {
-  margin: 0 30px !important;
-  width: 80px;
-  height: 80px;
+  margin: 0 58px !important;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  position: relative;
 }
+
 .mark-answer i {
   margin: 0 !important;
   font-size: 1.3em;
+}
+.mark-answer .button.ui i {
+  color: #fff;
+  font-size: 30px;
+  padding-top: 5px;
 }
 .mark-answer .description {
   margin-top: 20px !important;
@@ -116,7 +123,7 @@ body {
   min-width: 0;
   width: 100%;
   transition: none !important;
-  border-radius: 0;!important
+  border-radius: 0 !important;
 }
 .ui.progress:last-child {
   width: 100%;
@@ -125,11 +132,42 @@ body {
   left: 0;
   margin: 0;
 }
+.ui.button {
+  transition: none !important;
+}
+@media only screen and (min-width: 576px) {
+  .mark-answer button.ui:before {
+    content: "\f04b"; /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    font-size: 100px;
+  }
+  .mark-answer button.ui.right:before {
+    color: #21ba45;
+    top: 44%;
+    left: 15%;
+  }
+  .mark-answer button.ui.left:before {
+    color: #db2828;
+    top: 43%;
+    left: 0;
+    transform: rotate(180deg);
+  }
+  .ui.button,
+  .ui.right.button,
+  .ui.right.buttons .button,
+  .ui.left.button,
+  .ui.left.buttons .button,
+  .ui.right.button:hover,
+  .ui.left.button:hover {
+    background-color: #fff;
+  }
+}
 @media only screen and (max-width: 575px) {
   .mark-answer button.ui {
-    margin: 0 15px !important;
-    width: 52px;
-    height: 52px;
+    margin: 0 18px !important;
+    width: 70px;
+    height: 70px;
     padding: 0;
   }
   p.description {
@@ -142,6 +180,12 @@ body {
   }
   .ui.huge.header {
     font-size: 1.5em !important;
+  }
+  .mark-answer button.ui.right {
+    background-color: #21ba45;
+  }
+  .mark-answer button.ui.left {
+    background-color: #db2828;
   }
 }
 

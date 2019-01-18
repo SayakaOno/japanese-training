@@ -105,19 +105,14 @@ class ShowQuiz extends React.Component {
       return (
         <div className="mark-answer">
           <button
-            className="button ui red"
+            className="button ui left"
             onClick={this.handleIncorrectAnswer}
           >
-            <i class="x icon" />{" "}
+            <i className="x icon" />{" "}
           </button>
-          <button className="button ui positive" onClick={this.mark}>
-            <i class="check icon" />
+          <button className="button ui right" onClick={this.mark}>
+            <i className="check icon" />
           </button>
-          <p className="description">
-            <i className="caret left icon" />
-            or press arrow key!
-            <i className="caret right icon" />
-          </p>
         </div>
       );
     }

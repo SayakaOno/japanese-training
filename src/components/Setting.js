@@ -89,8 +89,8 @@ class Setting extends React.Component {
           /> */}
           <Field
             name="numberOfQuestions"
-            label="number of questions"
-            options={[1, 2, 3, 4, 5, 10, 15, 20]}
+            label="number of quizzes"
+            options={[...Array(this.props.quizzes.length).keys()].map(i => ++i)}
             component={this.renderFormElement}
           />
           <button className="button ui primary">Start</button>

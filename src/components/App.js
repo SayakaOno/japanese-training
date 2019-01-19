@@ -9,8 +9,19 @@ import ShowQuizList from "./ShowQuizList";
 import { countTime } from "../actions";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    this.timerId = null;
+  }
+
   componentDidMount() {
-    setInterval(this.props.countTime, 60000);
+    this.timerId = setInterval(this.props.countTime, 60000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
   }
 
   render() {

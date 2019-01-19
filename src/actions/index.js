@@ -1,3 +1,17 @@
+export const getQuizList = categories => {
+  return {
+    type: "GET_QUIZ_LIST",
+    payload: categories
+  };
+};
+
+export const selectCategory = id => {
+  return {
+    type: "SELECT_CATEGORY",
+    payload: id
+  };
+};
+
 export const nextQuiz = () => {
   return {
     type: "NEXT_QUIZ"

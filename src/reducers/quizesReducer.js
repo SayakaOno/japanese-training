@@ -1,4 +1,4 @@
-import { quizes } from "../data";
+import { quizes, categories, subCategories } from "../data";
 
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
@@ -7,6 +7,23 @@ function shuffle(a) {
   }
   return a;
 }
+
+export const quizListReducer = () => {
+  return quizes;
+};
+
+export const quizCategoryReducer = (state = categories, action) => {
+  switch (action.type) {
+    case "GET_QUIZ_LIST":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const quizSubCategoryReducer = () => {
+  return subCategories;
+};
 
 export const quizesReducer = (state = [], action) => {
   switch (action.type) {

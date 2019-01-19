@@ -26,5 +26,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "homepage": "http://sayaka38.minibird.jp/quiz"
 }

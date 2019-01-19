@@ -239,7 +239,7 @@ h2.header {
     height: 70px;
     padding: 0;
   }
-  .mark-answer p.description {
+  .show-answer p.description {
     display: none;
   }
   .card {

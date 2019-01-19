@@ -19,3 +19,12 @@ export const spendingTimeReducer = (state = 0, action) => {
       return state;
   }
 };
+
+export const studiedTimeReducer = (state = 0, action) => {
+  switch (action.type) {
+    case "COUNT_TIME":
+      return state + 1;
+    default:
+      return state;
+  }
+};

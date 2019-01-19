@@ -6,7 +6,11 @@ import {
   quizeSettingReducer,
   quizListReducer
 } from "./quizzesReducer";
-import { startTimeReducer, spendingTimeReducer } from "./timeReducers";
+import {
+  startTimeReducer,
+  spendingTimeReducer,
+  studiedTimeReducer
+} from "./timeReducers";
 import statusReducer from "./statusReducer";
 import markingReducer from "./markingReducer";
 import {
@@ -31,5 +35,6 @@ export default combineReducers({
   quizSubCategories: quizSubCategoryReducer,
   selectedCategory: selectCategoryReducer,
   selectedSubCategory: selectedSubCategoryReducer,
-  mobileView: widthReducer
+  mobileView: widthReducer,
+  studiedTime: studiedTimeReducer
 });

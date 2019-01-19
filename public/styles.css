@@ -2,6 +2,14 @@ body {
   min-width: 100%;
 }
 
+/* StudiedTime */
+.studied-time {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
 /* QuizList */
 .ui.container.show-quiz-list {
   padding-top: 15vh;

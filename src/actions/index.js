@@ -1,3 +1,9 @@
+export const countTime = () => {
+  return {
+    type: "COUNT_TIME"
+  };
+};
+
 export const getDocumentWidth = width => {
   return {
     type: "GET_DOCUMENT_WIDTH",

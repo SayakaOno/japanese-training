@@ -8,6 +8,7 @@ import {
   getDocumentWidth
 } from "../actions";
 import history from "../history";
+import StudiedTime from "./StudiedTime";
 
 class ShowQuizList extends React.Component {
   componentDidMount() {
@@ -66,68 +67,73 @@ class ShowQuizList extends React.Component {
 
   render() {
     return (
-      <div className="show-quiz-list ui container form">
-        <h1>English speaking training</h1>
-        <div className="field">
-          <p>Select category!</p>
-          <select
-            className="ui dropdown"
-            value={this.props.selectedCategory.id}
-            onChange={this.handleSelectChange}
+      <React.Fragment>
+        <StudiedTime />
+        <div className="show-quiz-list ui container form">
+          <h1>English speaking training</h1>
+          <div className="field">
+            <p>Select category!</p>
+            <select
+              className="ui dropdown"
+              value={this.props.selectedCategory.id}
+              onChange={this.handleSelectChange}
+            >
+              {this.props.quizCategories.map(category => {
+                return (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div
+            className={`ui ${
+              this.props.mobileView ? " styled accordion" : "pc"
+            }`}
           >
-            {this.props.quizCategories.map(category => {
-              return (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div
-          className={`ui ${this.props.mobileView ? " styled accordion" : "pc"}`}
-        >
-          {this.props.quizSubCategories.map(subCat => {
-            if (subCat.cat === +this.props.selectedCategory.id) {
-              return (
-                <div
-                  key={subCat.id}
-                  className={this.props.mobileView ? "" : "ui card"}
-                >
-                  {this.props.mobileView ? (
-                    this.renderSubCategory(subCat)
-                  ) : (
+            {this.props.quizSubCategories.map(subCat => {
+              if (subCat.cat === +this.props.selectedCategory.id) {
+                return (
+                  <div
+                    key={subCat.id}
+                    className={this.props.mobileView ? "" : "ui card"}
+                  >
+                    {this.props.mobileView ? (
+                      this.renderSubCategory(subCat)
+                    ) : (
+                      <div className="content">
+                        {this.renderSubCategory(subCat)}
+                      </div>
+                    )}
                     <div className="content">
-                      {this.renderSubCategory(subCat)}
+                      <ul
+                        className={`transition${
+                          this.props.mobileView ? " hidden" : ""
+                        }`}
+                      >
+                        {this.props.quizList.map(quiz => {
+                          if (quiz.subcat === subCat.id) {
+                            return <li key={quiz.id}>{quiz.translation}</li>;
+                          }
+                          return null;
+                        })}
+                      </ul>
+                      <button
+                        className="ui button primary"
+                        onClick={() => this.handleButtonClick(subCat)}
+                      >
+                        Try these!
+                      </button>
                     </div>
-                  )}
-                  <div className="content">
-                    <ul
-                      className={`transition${
-                        this.props.mobileView ? " hidden" : ""
-                      }`}
-                    >
-                      {this.props.quizList.map(quiz => {
-                        if (quiz.subcat === subCat.id) {
-                          return <li key={quiz.id}>{quiz.translation}</li>;
-                        }
-                        return null;
-                      })}
-                    </ul>
-                    <button
-                      className="ui button primary"
-                      onClick={() => this.handleButtonClick(subCat)}
-                    >
-                      Try these!
-                    </button>
                   </div>
-                </div>
-              );
-            }
-            return null;
-          })}
+                );
+              }
+              return null;
+            })}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -144,5 +150,10 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getQuizList, selectCategory, selectSubCategory, getDocumentWidth }
+  {
+    getQuizList,
+    selectCategory,
+    selectSubCategory,
+    getDocumentWidth
+  }
 )(ShowQuizList);

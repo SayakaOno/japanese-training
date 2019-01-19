@@ -29,7 +29,7 @@ export default combineReducers({
   quizList: quizListReducer,
   quizCategories: quizCategoryReducer,
   quizSubCategories: quizSubCategoryReducer,
-  selectedCategoryId: selectCategoryReducer,
-  selectedSubCategoryId: selectedSubCategoryReducer,
+  selectedCategory: selectCategoryReducer,
+  selectedSubCategory: selectedSubCategoryReducer,
   mobileView: widthReducer
 });

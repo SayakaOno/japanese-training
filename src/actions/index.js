@@ -12,17 +12,17 @@ export const getQuizList = categories => {
   };
 };
 
-export const selectCategory = categoryId => {
+export const selectCategory = category => {
   return {
     type: "SELECT_CATEGORY",
-    payload: categoryId
+    payload: category
   };
 };
 
-export const selectSubCategory = subCategoryId => {
+export const selectSubCategory = subCategory => {
   return {
     type: "SELECT_SUBCATEGORY",
-    payload: subCategoryId
+    payload: subCategory
   };
 };
 

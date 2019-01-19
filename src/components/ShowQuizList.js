@@ -30,11 +30,11 @@ class ShowQuizList extends React.Component {
   }
 
   handleSelectChange = e => {
-    this.props.selectCategory(e.target.value);
+    this.props.selectCategory(this.props.quizCategories[e.target.value]);
   };
 
-  handleButtonClick = subCatId => {
-    this.props.selectSubCategory(subCatId);
+  handleButtonClick = subCat => {
+    this.props.selectSubCategory(subCat);
     history.push("/setting");
   };
 
@@ -70,7 +70,7 @@ class ShowQuizList extends React.Component {
           <p>Select category!</p>
           <select
             className="ui dropdown"
-            value={this.props.selectedCategory}
+            value={this.props.selectedCategory.id}
             onChange={this.handleSelectChange}
           >
             {this.props.quizCategories.map(category => {
@@ -86,7 +86,7 @@ class ShowQuizList extends React.Component {
           className={`ui ${this.props.mobileView ? " styled accordion" : "pc"}`}
         >
           {this.props.quizSubCategories.map(subCat => {
-            if (subCat.cat === +this.props.selectedCategoryId) {
+            if (subCat.cat === +this.props.selectedCategory.id) {
               return (
                 <div
                   key={subCat.id}
@@ -114,7 +114,7 @@ class ShowQuizList extends React.Component {
                     </ul>
                     <button
                       className="ui button primary"
-                      onClick={() => this.handleButtonClick(subCat.id)}
+                      onClick={() => this.handleButtonClick(subCat)}
                     >
                       Try these!
                     </button>
@@ -135,7 +135,7 @@ const mapStateToProps = state => {
     quizList: state.quizList,
     quizCategories: state.quizCategories,
     quizSubCategories: state.quizSubCategories,
-    selectedCategoryId: state.selectedCategoryId,
+    selectedCategory: state.selectedCategory,
     mobileView: state.mobileView
   };
 };

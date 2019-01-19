@@ -42,17 +42,20 @@ class Setting extends React.Component {
   render() {
     return (
       <div className="ui container setting">
-        <h1>English speaking training</h1>
+        <h1>Setting</h1>
+        <div className="info">
+          <p>Category:</p>
+        </div>
         <form
           onSubmit={this.props.handleSubmit(this.onSubmit)}
           className="ui form error"
         >
-          <Field
+          {/* <Field
             name="level"
             label="level"
             options={[1, 2, 3]}
             component={this.renderFormElement}
-          />
+          /> */}
           <Field
             name="order"
             label="order"
@@ -116,12 +119,20 @@ const validate = formValues => {
   // return errors;
 };
 
+const mapStateToProps = state => {
+  return {
+    quizzes: state.quizzes,
+    category: state.selectedCategory,
+    subCategoryId: state.selectedSubCategory
+  };
+};
+
 const formWrapped = reduxForm({
   form: "setting",
   validate
 })(Setting);
 
 export default connect(
-  null,
+  mapStateToProps,
   { startQuiz, nextStatus }
 )(formWrapped);

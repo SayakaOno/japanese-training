@@ -15,7 +15,7 @@ export const quizListReducer = () => {
 export const quizzesReducer = (state = [], action) => {
   switch (action.type) {
     case "SELECT_SUBCATEGORY":
-      return quizzes.filter(quiz => +action.payload === quiz.subcat);
+      return quizzes.filter(quiz => +action.payload.id === quiz.subcat);
     case "START_QUIZ":
       let filteredQuiz = state.slice();
       if (action.payload.order === "random") {

@@ -4,14 +4,17 @@ import {
   quizesReducer,
   currentQuizReducer,
   quizeSettingReducer,
-  quizListReducer,
-  quizCategoryReducer,
-  quizSubCategoryReducer
+  quizListReducer
 } from "./quizesReducer";
 import { startTimeReducer, spendingTimeReducer } from "./timeReducers";
 import statusReducer from "./statusReducer";
 import markingReducer from "./markingReducer";
-import categoryReducer from "./categoryReducer";
+import {
+  selectCategoryReducer,
+  quizCategoryReducer,
+  quizSubCategoryReducer,
+  selectedSubCategoryReducer
+} from "./categoryReducer";
 
 export default combineReducers({
   quizes: quizesReducer,
@@ -25,5 +28,6 @@ export default combineReducers({
   quizList: quizListReducer,
   quizCategories: quizCategoryReducer,
   quizSubCategories: quizSubCategoryReducer,
-  selectedCategory: categoryReducer
+  selectedCategoryId: selectCategoryReducer,
+  selectedSubCategoryId: selectedSubCategoryReducer
 });

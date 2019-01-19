@@ -5,10 +5,17 @@ export const getQuizList = categories => {
   };
 };
 
-export const selectCategory = id => {
+export const selectCategory = categoryId => {
   return {
     type: "SELECT_CATEGORY",
-    payload: id
+    payload: categoryId
+  };
+};
+
+export const selectSubCategory = subCategoryId => {
+  return {
+    type: "SELECT_SUBCATEGORY",
+    payload: subCategoryId
   };
 };
 

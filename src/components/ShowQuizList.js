@@ -30,7 +30,9 @@ class ShowQuizList extends React.Component {
   }
 
   handleSelectChange = e => {
-    this.props.selectCategory(this.props.quizCategories[e.target.value]);
+    this.props.selectCategory(
+      this.props.quizCategories.find(cat => cat.id === +e.target.value)
+    );
   };
 
   handleButtonClick = subCat => {

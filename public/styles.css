@@ -63,7 +63,16 @@ h2.header {
 }
 .ui.container.setting h1 {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+}
+.ui.container.setting .info {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.ui.container.setting .info .angle.right {
+  color: #666;
 }
 .setting form {
   font-size: 1.5em !important;
@@ -83,8 +92,8 @@ h2.header {
 }
 @media only screen and (max-width: 575px) {
   .ui.container.setting {
-    max-width: 300px !important;
-    box-sizing: border-box;
+    /* max-width: 300px !important; */
+    /* box-sizing: border-box; */
     padding: 10vh 10px;
     height: 100%;
   }
@@ -222,7 +231,7 @@ h2.header {
     height: 70px;
     padding: 0;
   }
-  p.description {
+  .mark-answer p.description {
     display: none;
   }
   .card {
@@ -248,7 +257,7 @@ h2.header {
 }
 .result h1 {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 50px !important;
 }
 .result .container {
   padding-top: 20vh;
@@ -256,6 +265,7 @@ h2.header {
 }
 .result p.description {
   font-size: 1.5em;
+  text-align: center;
 }
 .result ul p {
   margin: 0;
@@ -286,6 +296,9 @@ h2.header {
     font-size: 1.4em;
   }
   .result ul .ja {
+    font-size: 1em;
+  }
+  .result p.description {
     font-size: 1em;
   }
 }

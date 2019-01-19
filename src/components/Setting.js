@@ -1,5 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { startQuiz, nextStatus } from "../actions";
 import history from "../history";
@@ -40,12 +41,18 @@ class Setting extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.quizzes &&
+      this.props.category &&
+      this.props.subCategory ? (
       <div className="ui container setting">
         <h1>Setting</h1>
-        <div className="info">
-          <p>Category:</p>
-        </div>
+        <p className="info">
+          <i className="folder open icon" />{" "}
+          <Link to="/">{this.props.category.name}</Link>
+          <i className="angle right icon" />
+          {this.props.subCategory.name}{" "}
+          <small>{`(${this.props.quizzes.length} quizzes) `}</small>
+        </p>
         <form
           onSubmit={this.props.handleSubmit(this.onSubmit)}
           className="ui form error"
@@ -89,6 +96,8 @@ class Setting extends React.Component {
           <button className="button ui primary">Start</button>
         </form>
       </div>
+    ) : (
+      <Redirect to={{ pathname: "/" }} />
     );
   }
 }
@@ -123,7 +132,7 @@ const mapStateToProps = state => {
   return {
     quizzes: state.quizzes,
     category: state.selectedCategory,
-    subCategoryId: state.selectedSubCategory
+    subCategory: state.selectedSubCategory
   };
 };
 

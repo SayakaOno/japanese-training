@@ -57,7 +57,7 @@ class ShowQuiz extends React.Component {
   };
 
   mark = () => {
-    if (this.props.currentQuiz === this.props.quizes.length - 1) {
+    if (this.props.currentQuiz === this.props.quizzes.length - 1) {
       this.props.nextStatus(FINISHED);
       this.props.finishQuiz();
       history.push("/result");
@@ -74,7 +74,7 @@ class ShowQuiz extends React.Component {
   };
 
   addIncorrectQuize = () => {
-    this.props.incorrectAnswer(this.props.quizes[this.props.currentQuiz]);
+    this.props.incorrectAnswer(this.props.quizzes[this.props.currentQuiz]);
   };
 
   handleIncorrectAnswer = () => {
@@ -122,7 +122,7 @@ class ShowQuiz extends React.Component {
   };
 
   render() {
-    return this.props.quizes.length > 0 ? (
+    return this.props.quizzes.length > 0 ? (
       <div
         ref={this.card}
         className="ui cards"
@@ -131,13 +131,13 @@ class ShowQuiz extends React.Component {
       >
         <div className="card">
           <div className="count">
-            {this.props.currentQuiz + 1}/{this.props.quizes.length}
+            {this.props.currentQuiz + 1}/{this.props.quizzes.length}
           </div>
           <div className="content">
             <div className="question">
               <div className="description">Translate this!</div>
               <div className="ui huge header">
-                {this.props.quizes[this.props.currentQuiz].translation}
+                {this.props.quizzes[this.props.currentQuiz].translation}
               </div>
             </div>
             <div className="answer">
@@ -145,7 +145,7 @@ class ShowQuiz extends React.Component {
                 <React.Fragment>
                   <div className="description">Answer:</div>
                   <div className="ui huge header">
-                    {this.props.quizes[this.props.currentQuiz].answer}
+                    {this.props.quizzes[this.props.currentQuiz].answer}
                   </div>
                 </React.Fragment>
               ) : null}
@@ -171,10 +171,10 @@ class ShowQuiz extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    quizes: state.quizes,
+    quizzes: state.quizzes,
     currentQuiz: state.currentQuiz,
     currentStatus: state.status,
-    incorrectQuizes: state.incorrectQuizes,
+    incorrectQuizzes: state.incorrectQuizzes,
     startTime: state.startTime,
     spentTime: state.spentTime,
     duration: state.setting.duration

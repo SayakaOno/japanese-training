@@ -1,4 +1,4 @@
-import { quizes, categories, subCategories } from "../data";
+import { quizzes, categories, subCategories } from "../data";
 
 export const selectCategoryReducer = (state = 1, action) => {
   switch (action.type) {

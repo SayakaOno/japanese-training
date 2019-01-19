@@ -5,18 +5,18 @@ import { backToHome } from "../actions";
 
 class Result extends React.Component {
   render() {
-    const { incorrectQuizes } = this.props;
+    const { incorrectQuizzes } = this.props;
     return (
       <div className="result">
         <div className="container">
           <h1 className="ui huge header">Well done!</h1>
-          {incorrectQuizes.length > 0 ? (
+          {incorrectQuizzes.length > 0 ? (
             <React.Fragment>
               <p className="description">
                 Here is the sentences that you might want to review:
               </p>
               <ul>
-                {incorrectQuizes.map(quiz => {
+                {incorrectQuizzes.map(quiz => {
                   return (
                     <li key={quiz.id}>
                       <p className="en">{quiz.answer}</p>
@@ -41,7 +41,7 @@ class Result extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { incorrectQuizes: state.incorrectQuizes, quizes: state.quizes };
+  return { incorrectQuizzes: state.incorrectQuizzes, quizzes: state.quizzes };
 };
 
 export default connect(

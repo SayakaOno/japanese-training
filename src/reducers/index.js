@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 import {
-  quizesReducer,
+  quizzesReducer,
   currentQuizReducer,
   quizeSettingReducer,
   quizListReducer
-} from "./quizesReducer";
+} from "./quizzesReducer";
 import { startTimeReducer, spendingTimeReducer } from "./timeReducers";
 import statusReducer from "./statusReducer";
 import markingReducer from "./markingReducer";
@@ -18,10 +18,10 @@ import {
 import widthReducer from "./widthReducer";
 
 export default combineReducers({
-  quizes: quizesReducer,
+  quizzes: quizzesReducer,
   currentQuiz: currentQuizReducer,
   status: statusReducer,
-  incorrectQuizes: markingReducer,
+  incorrectQuizzes: markingReducer,
   form: formReducer,
   setting: quizeSettingReducer,
   startTime: startTimeReducer,

@@ -14,8 +14,10 @@ export const quizListReducer = () => {
 
 export const quizesReducer = (state = [], action) => {
   switch (action.type) {
+    case "SELECT_SUBCATEGORY":
+      return quizes.filter(quiz => +action.payload === quiz.subcat);
     case "START_QUIZ":
-      let filteredQuiz = quizes.slice();
+      let filteredQuiz = state.slice();
       if (action.payload.order === "random") {
         filteredQuiz = shuffle(filteredQuiz);
       }

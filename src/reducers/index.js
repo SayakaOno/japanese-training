@@ -15,6 +15,7 @@ import {
   quizSubCategoryReducer,
   selectedSubCategoryReducer
 } from "./categoryReducer";
+import widthReducer from "./widthReducer";
 
 export default combineReducers({
   quizes: quizesReducer,
@@ -29,5 +30,6 @@ export default combineReducers({
   quizCategories: quizCategoryReducer,
   quizSubCategories: quizSubCategoryReducer,
   selectedCategoryId: selectCategoryReducer,
-  selectedSubCategoryId: selectedSubCategoryReducer
+  selectedSubCategoryId: selectedSubCategoryReducer,
+  mobileView: widthReducer
 });

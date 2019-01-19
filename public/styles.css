@@ -2,6 +2,58 @@ body {
   min-width: 100%;
 }
 
+/* QuizList */
+.ui.container.show-quiz-list {
+  padding-top: 15vh;
+  padding-bottom: 10vh;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+.ui.container.show-quiz-list h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.show-quiz-list button {
+  display: block !important;
+  margin: 0 auto !important;
+  margin-bottom: 20px !important;
+}
+/* for mobile */
+.show-quiz-list .field {
+  max-width: 300px;
+  margin: 0 auto !important;
+  margin-bottom: 50px !important;
+}
+.show-quiz-list ul {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+/* for pc */
+h2.header {
+  padding-top: 5px;
+}
+.show-quiz-list .ui.card,
+.show-quiz-list .card .content {
+  display: block !important;
+  height: 100%;
+  text-align: left;
+}
+.show-quiz-list .ui.card {
+  width: 400px !important;
+  margin: 0 15px 30px !important;
+}
+.pc.ui {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media only screen and (max-width: 575px) {
+  .ui.container.show-quiz-list {
+    padding: 10vh 10px;
+    height: 100%;
+  }
+}
+
 /* Setting */
 .ui.container.setting {
   max-width: 500px !important;

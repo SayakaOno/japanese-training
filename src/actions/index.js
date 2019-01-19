@@ -1,3 +1,10 @@
+export const getDocumentWidth = width => {
+  return {
+    type: "GET_DOCUMENT_WIDTH",
+    payload: width
+  };
+};
+
 export const getQuizList = categories => {
   return {
     type: "GET_QUIZ_LIST",

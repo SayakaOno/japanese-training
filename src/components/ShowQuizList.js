@@ -1,16 +1,32 @@
 import React from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { getQuizList, selectCategory, selectSubCategory } from "../actions";
+import {
+  getQuizList,
+  selectCategory,
+  selectSubCategory,
+  getDocumentWidth
+} from "../actions";
 import history from "../history";
 
 class ShowQuizList extends React.Component {
   componentDidMount() {
+    this.props.getDocumentWidth(document.documentElement.clientWidth);
     const usedCategoryIds = _.uniq(_.map(this.props.quizList, "cat"));
     const usedCategories = this.props.quizCategories.filter(category => {
       return usedCategoryIds.includes(category.id);
     });
     this.props.getQuizList(usedCategories);
+    window.addEventListener("resize", () =>
+      this.props.getDocumentWidth(document.documentElement.clientWidth)
+    );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      "resize",
+      this.props.getDocumentWidth(document.documentElement.clientWidth)
+    );
   }
 
   handleSelectChange = e => {
@@ -34,33 +50,61 @@ class ShowQuizList extends React.Component {
     }
   };
 
+  renderSubCategory = subCat => {
+    return (
+      <h2
+        className={this.props.mobileView ? "title" : "header"}
+        onClick={this.handleTitleClick}
+      >
+        {this.props.mobileView ? <i className="dropdown icon" /> : null}
+        {subCat.name}
+      </h2>
+    );
+  };
+
   render() {
     return (
-      <div className="show-quiz-list">
+      <div className="show-quiz-list ui container form">
         <h1>English speaking training</h1>
-        <select
-          value={this.props.selectedCategory}
-          onChange={this.handleSelectChange}
+        <div className="field">
+          <p>Select category!</p>
+          <select
+            className="ui dropdown"
+            value={this.props.selectedCategory}
+            onChange={this.handleSelectChange}
+          >
+            {this.props.quizCategories.map(category => {
+              return (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div
+          className={`ui ${this.props.mobileView ? " styled accordion" : "pc"}`}
         >
-          {this.props.quizCategories.map(category => {
-            return (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            );
-          })}
-        </select>
-        <div className="ui styled accordion">
           {this.props.quizSubCategories.map(subCat => {
             if (subCat.cat === +this.props.selectedCategoryId) {
               return (
-                <React.Fragment key={subCat.id}>
-                  <div className="title" onClick={this.handleTitleClick}>
-                    <i className="dropdown icon" />
-                    {subCat.name}
-                  </div>
+                <div
+                  key={subCat.id}
+                  className={this.props.mobileView ? "" : "ui card"}
+                >
+                  {this.props.mobileView ? (
+                    this.renderSubCategory(subCat)
+                  ) : (
+                    <div className="content">
+                      {this.renderSubCategory(subCat)}
+                    </div>
+                  )}
                   <div className="content">
-                    <ul className="transition hidden">
+                    <ul
+                      className={`transition${
+                        this.props.mobileView ? " hidden" : ""
+                      }`}
+                    >
                       {this.props.quizList.map(quiz => {
                         if (quiz.subcat === subCat.id) {
                           return <li key={quiz.id}>{quiz.translation}</li>;
@@ -72,10 +116,10 @@ class ShowQuizList extends React.Component {
                       className="ui button primary"
                       onClick={() => this.handleButtonClick(subCat.id)}
                     >
-                      Try these quizzes!
+                      Try these!
                     </button>
                   </div>
-                </React.Fragment>
+                </div>
               );
             }
             return null;
@@ -91,11 +135,12 @@ const mapStateToProps = state => {
     quizList: state.quizList,
     quizCategories: state.quizCategories,
     quizSubCategories: state.quizSubCategories,
-    selectedCategoryId: state.selectedCategoryId
+    selectedCategoryId: state.selectedCategoryId,
+    mobileView: state.mobileView
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getQuizList, selectCategory, selectSubCategory }
+  { getQuizList, selectCategory, selectSubCategory, getDocumentWidth }
 )(ShowQuizList);

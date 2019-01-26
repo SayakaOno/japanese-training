@@ -42,6 +42,9 @@ class ShowQuizList extends React.Component {
   };
 
   handleTitleClick = e => {
+    if (!this.props.mobileView) {
+      return;
+    }
     if (e.target.className === "title") {
       e.target.className = "title active";
       e.target.nextSibling.className = "content active";
@@ -59,7 +62,7 @@ class ShowQuizList extends React.Component {
         className={this.props.mobileView ? "title" : "header"}
         onClick={this.handleTitleClick}
       >
-        {this.props.mobileView ? <i className="dropdown icon" /> : null}
+        {this.props.mobileView && <i className="dropdown icon" />}
         {subCat.name}
       </h2>
     );
@@ -97,7 +100,7 @@ class ShowQuizList extends React.Component {
                 return (
                   <div
                     key={subCat.id}
-                    className={this.props.mobileView ? "" : "ui card"}
+                    className={!this.props.mobileView && "ui card"}
                   >
                     {this.props.mobileView ? (
                       this.renderSubCategory(subCat)
@@ -108,9 +111,8 @@ class ShowQuizList extends React.Component {
                     )}
                     <div className="content">
                       <ul
-                        className={`transition${
-                          this.props.mobileView ? " hidden" : ""
-                        }`}
+                        className={`transition${this.props.mobileView &&
+                          " hidden"}`}
                       >
                         {this.props.quizList.map(quiz => {
                           if (quiz.subcat === subCat.id) {

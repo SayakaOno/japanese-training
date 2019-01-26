@@ -25,9 +25,8 @@ class Setting extends React.Component {
         <label>{label}</label>
         <select {...input}>
           <option>select</option>
-          {options
-            ? options.map(option => <option key={option}>{option}</option>)
-            : null}
+          {options &&
+            options.map(option => <option key={option}>{option}</option>)}
         </select>
         {this.renderError(meta)}
       </div>

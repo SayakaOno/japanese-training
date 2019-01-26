@@ -141,22 +141,22 @@ class ShowQuiz extends React.Component {
               </div>
             </div>
             <div className="answer">
-              {this.props.currentStatus === SHOWING_ANSWER ? (
+              {this.props.currentStatus === SHOWING_ANSWER && (
                 <React.Fragment>
                   <div className="description">Answer:</div>
                   <div className="ui huge header">
                     {this.props.quizzes[this.props.currentQuiz].answer}
                   </div>
                 </React.Fragment>
-              ) : null}
+              )}
             </div>
             {this.renderNavigation()}
           </div>
-          {this.props.duration ? (
+          {this.props.duration && (
             <div className="ui yellow progress">
               <div className="bar" ref={this.bar} />
             </div>
-          ) : null}
+          )}
         </div>
       </div>
     ) : (

@@ -10,7 +10,7 @@ class Result extends React.Component {
       <div className="result">
         <div className="container">
           <h1 className="ui huge header">Well done!</h1>
-          {incorrectQuizzes.length > 0 ? (
+          {incorrectQuizzes.length > 0 && (
             <React.Fragment>
               <p className="description">
                 Here is the sentences that you might want to review:
@@ -26,7 +26,7 @@ class Result extends React.Component {
                 })}
               </ul>
             </React.Fragment>
-          ) : null}
+          )}
           <Link
             to="/"
             className="button ui primary"

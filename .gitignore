@@ -25,3 +25,4 @@ yarn-error.log*
 
 /client/src/data.js
 /client/src/data*.js
+/server/config.js

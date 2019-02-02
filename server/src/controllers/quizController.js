@@ -47,7 +47,7 @@ export const updateQuiz = (req, res) => {
 };
 
 export const deleteQuiz = (req, res) => {
-  Quiz.remove({ _id: req.params.quizId }, (err, quiz) => {
+  Quiz.deleteOne({ _id: req.params.quizId }, (err, quiz) => {
     if (err) {
       res.send(err);
     }

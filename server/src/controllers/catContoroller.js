@@ -33,7 +33,6 @@ export const getCat = (req, res) => {
 };
 
 export const updateCat = (req, res) => {
-  console.log(req.body);
   Category.findOneAndUpdate(
     { _id: req.params.catId },
     req.body,
@@ -48,7 +47,7 @@ export const updateCat = (req, res) => {
 };
 
 export const deleteCat = (req, res) => {
-  Category.remove({ _id: req.params.catId }, err => {
+  Category.deleteOne({ _id: req.params.catId }, err => {
     if (err) {
       res.send(err);
     }

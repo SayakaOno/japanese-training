@@ -1,31 +1,37 @@
-import React from "react";
-import _ from "lodash";
-import { connect } from "react-redux";
+import React from 'react';
+import axios from 'axios';
+import _ from 'lodash';
+import { connect } from 'react-redux';
 import {
   getQuizList,
   selectCategory,
   selectSubCategory,
   getDocumentWidth
-} from "../actions";
-import history from "../history";
-import StudiedTime from "./StudiedTime";
+} from '../actions';
+import history from '../history';
+import StudiedTime from './StudiedTime';
 
 class ShowQuizList extends React.Component {
   componentDidMount() {
+    axios.get('http://localhost:3000/quiz').then(response => {
+      console.log('response');
+      console.log(response);
+    });
+
     this.props.getDocumentWidth(document.documentElement.clientWidth);
-    const usedCategoryIds = _.uniq(_.map(this.props.quizList, "cat"));
+    const usedCategoryIds = _.uniq(_.map(this.props.quizList, 'cat'));
     const usedCategories = this.props.quizCategories.filter(category => {
       return usedCategoryIds.includes(category.id);
     });
     this.props.getQuizList(usedCategories);
-    window.addEventListener("resize", () =>
+    window.addEventListener('resize', () =>
       this.props.getDocumentWidth(document.documentElement.clientWidth)
     );
   }
 
   componentWillUnmount() {
     window.removeEventListener(
-      "resize",
+      'resize',
       this.props.getDocumentWidth(document.documentElement.clientWidth)
     );
   }
@@ -38,31 +44,31 @@ class ShowQuizList extends React.Component {
 
   handleButtonClick = subCat => {
     this.props.selectSubCategory(subCat);
-    history.push("/setting");
+    history.push('/setting');
   };
 
   handleTitleClick = e => {
     if (!this.props.mobileView) {
       return;
     }
-    if (e.target.className === "title") {
-      e.target.className = "title active";
-      e.target.nextSibling.className = "content active";
-      e.target.nextSibling.querySelector("ul").className = "transition visible";
+    if (e.target.className === 'title') {
+      e.target.className = 'title active';
+      e.target.nextSibling.className = 'content active';
+      e.target.nextSibling.querySelector('ul').className = 'transition visible';
     } else {
-      e.target.className = "title";
-      e.target.nextSibling.className = "content";
-      e.target.nextSibling.querySelector("ul").className = "transition hidden";
+      e.target.className = 'title';
+      e.target.nextSibling.className = 'content';
+      e.target.nextSibling.querySelector('ul').className = 'transition hidden';
     }
   };
 
   renderSubCategory = subCat => {
     return (
       <h2
-        className={this.props.mobileView ? "title" : "header"}
+        className={this.props.mobileView ? 'title' : 'header'}
         onClick={this.handleTitleClick}
       >
-        {this.props.mobileView && <i className="dropdown icon" />}
+        {this.props.mobileView && <i className='dropdown icon' />}
         {subCat.name}
       </h2>
     );
@@ -72,12 +78,12 @@ class ShowQuizList extends React.Component {
     return (
       <React.Fragment>
         <StudiedTime />
-        <div className="show-quiz-list ui container form">
+        <div className='show-quiz-list ui container form'>
           <h1>English speaking training</h1>
-          <div className="field">
+          <div className='field'>
             <p>Select category!</p>
             <select
-              className="ui dropdown"
+              className='ui dropdown'
               value={this.props.selectedCategory.id}
               onChange={this.handleSelectChange}
             >
@@ -92,7 +98,7 @@ class ShowQuizList extends React.Component {
           </div>
           <div
             className={`ui ${
-              this.props.mobileView ? " styled accordion" : "pc"
+              this.props.mobileView ? ' styled accordion' : 'pc'
             }`}
           >
             {this.props.quizSubCategories.map(subCat => {
@@ -100,19 +106,19 @@ class ShowQuizList extends React.Component {
                 return (
                   <div
                     key={subCat.id}
-                    className={!this.props.mobileView && "ui card"}
+                    className={!this.props.mobileView && 'ui card'}
                   >
                     {this.props.mobileView ? (
                       this.renderSubCategory(subCat)
                     ) : (
-                      <div className="content">
+                      <div className='content'>
                         {this.renderSubCategory(subCat)}
                       </div>
                     )}
-                    <div className="content">
+                    <div className='content'>
                       <ul
                         className={`transition${this.props.mobileView &&
-                          " hidden"}`}
+                          ' hidden'}`}
                       >
                         {this.props.quizList.map(quiz => {
                           if (quiz.subcat === subCat.id) {
@@ -122,7 +128,7 @@ class ShowQuizList extends React.Component {
                         })}
                       </ul>
                       <button
-                        className="ui button primary"
+                        className='ui button primary'
                         onClick={() => this.handleButtonClick(subCat)}
                       >
                         Try these!

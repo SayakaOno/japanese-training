@@ -3,17 +3,13 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const QuizSchema = new Schema({
-  id: {
-    type: Number,
-    required: 'Enter a id'
+  catId: {
+    type: String,
+    required: 'Enter a category Id'
   },
-  cat: {
-    type: Number,
-    required: 'Enter a category'
-  },
-  subcat: {
-    type: Number,
-    required: 'Enter a sub category'
+  subCatId: {
+    type: String,
+    required: 'Enter a sub category Id'
   },
   level: {
     type: Number,

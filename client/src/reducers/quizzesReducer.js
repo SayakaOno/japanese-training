@@ -1,5 +1,3 @@
-import { quizzes } from '../data';
-
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -9,7 +7,6 @@ function shuffle(a) {
 }
 
 export const quizListReducer = (state = [], action) => {
-  console.log('quizlistreducer', action.payload);
   if (action.type === 'GET_DATA') {
     return action.payload.quizzes;
   }
@@ -19,7 +16,7 @@ export const quizListReducer = (state = [], action) => {
 export const quizzesReducer = (state = [], action) => {
   switch (action.type) {
     case 'SELECT_SUBCATEGORY':
-      return quizzes.filter(quiz => +action.payload.id === quiz.subcat);
+      return action.payload;
     case 'START_QUIZ':
       let filteredQuiz = state.slice();
       if (action.payload.order === 'random') {

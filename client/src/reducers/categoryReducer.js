@@ -1,5 +1,3 @@
-import { categories, subCategories } from '../data';
-
 export const selectCategoryReducer = (state = {}, action) => {
   switch (action.type) {
     case 'GET_DATA':

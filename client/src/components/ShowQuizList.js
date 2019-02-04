@@ -47,7 +47,9 @@ class ShowQuizList extends React.Component {
   };
 
   handleButtonClick = subCat => {
-    this.props.selectSubCategory(subCat);
+    this.props.selectSubCategory(
+      this.props.quizList.filter(quiz => subCat._id === quiz.subCatId)
+    );
     history.push('/setting');
   };
 

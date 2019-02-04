@@ -6,22 +6,26 @@ import {
   getQuizList,
   selectCategory,
   selectSubCategory,
-  getDocumentWidth
+  getDocumentWidth,
+  getData
 } from '../actions';
 import history from '../history';
 import StudiedTime from './StudiedTime';
 
 class ShowQuizList extends React.Component {
   componentDidMount() {
-    axios.get('http://localhost:3000/quiz').then(response => {
-      console.log('response');
-      console.log(response);
-    });
+    axios
+      .all([axios.get('/quiz'), axios.get('/cat'), axios.get('/subcat')])
+      .then(
+        axios.spread((quizRes, catRes, subCatRes) => {
+          this.props.getData(quizRes.data, catRes.data, subCatRes.data);
+        })
+      );
 
     this.props.getDocumentWidth(document.documentElement.clientWidth);
-    const usedCategoryIds = _.uniq(_.map(this.props.quizList, 'cat'));
     const usedCategories = this.props.quizCategories.filter(category => {
-      return usedCategoryIds.includes(category.id);
+      const usedCategoryIds = _.uniq(_.map(this.props.quizList, 'cat'));
+      return usedCategoryIds.includes(category._id);
     });
     this.props.getQuizList(usedCategories);
     window.addEventListener('resize', () =>
@@ -38,7 +42,7 @@ class ShowQuizList extends React.Component {
 
   handleSelectChange = e => {
     this.props.selectCategory(
-      this.props.quizCategories.find(cat => cat.id === +e.target.value)
+      this.props.quizCategories.find(cat => cat._id === e.target.value)
     );
   };
 
@@ -84,12 +88,12 @@ class ShowQuizList extends React.Component {
             <p>Select category!</p>
             <select
               className='ui dropdown'
-              value={this.props.selectedCategory.id}
+              value={this.props.selectedCategory._id}
               onChange={this.handleSelectChange}
             >
               {this.props.quizCategories.map(category => {
                 return (
-                  <option key={category.id} value={category.id}>
+                  <option key={category._id} value={category._id}>
                     {category.name}
                   </option>
                 );
@@ -102,10 +106,10 @@ class ShowQuizList extends React.Component {
             }`}
           >
             {this.props.quizSubCategories.map(subCat => {
-              if (subCat.cat === +this.props.selectedCategory.id) {
+              if (subCat.catId === this.props.selectedCategory._id) {
                 return (
                   <div
-                    key={subCat.id}
+                    key={subCat._id}
                     className={!this.props.mobileView && 'ui card'}
                   >
                     {this.props.mobileView ? (
@@ -121,8 +125,8 @@ class ShowQuizList extends React.Component {
                           ' hidden'}`}
                       >
                         {this.props.quizList.map(quiz => {
-                          if (quiz.subcat === subCat.id) {
-                            return <li key={quiz.id}>{quiz.translation}</li>;
+                          if (quiz.subCatId === subCat._id) {
+                            return <li key={quiz._id}>{quiz.translation}</li>;
                           }
                           return null;
                         })}
@@ -162,6 +166,7 @@ export default connect(
     getQuizList,
     selectCategory,
     selectSubCategory,
-    getDocumentWidth
+    getDocumentWidth,
+    getData
   }
 )(ShowQuizList);

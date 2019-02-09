@@ -18,10 +18,6 @@ app.use(bodyParser.json());
 
 routes(app);
 
-app.get('/', (req, res) => {
-  res.send(`Node and express server is running on port ${PORT}`);
-});
-
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/*', function(req, res) {

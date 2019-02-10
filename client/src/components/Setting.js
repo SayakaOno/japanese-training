@@ -1,25 +1,25 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { startQuiz, nextStatus } from "../actions";
-import history from "../history";
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { startQuiz, nextStatus } from '../actions';
+import history from '../history';
 
-const ANSWERING = "answering";
+const ANSWERING = 'answering';
 
 class Setting extends React.Component {
   renderError = ({ error, touched }) => {
     if (touched && error) {
       return (
-        <div className="ui error message">
-          <div className="header">{error}</div>
+        <div className='ui error message'>
+          <div className='header'>{error}</div>
         </div>
       );
     }
   };
 
   renderFormElement = ({ input, label, meta, options }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       <div className={className}>
         <label>{label}</label>
@@ -36,25 +36,25 @@ class Setting extends React.Component {
   onSubmit = formValues => {
     this.props.startQuiz(formValues);
     this.props.nextStatus(ANSWERING);
-    history.push("/quiz");
+    history.push('/practice');
   };
 
   render() {
     return this.props.quizzes &&
       this.props.category &&
       this.props.subCategory ? (
-      <div className="ui container setting">
+      <div className='ui container setting'>
         <h1>Setting</h1>
-        <p className="info">
-          <i className="folder open icon" />{" "}
-          <Link to="/">{this.props.category.name}</Link>
-          <i className="angle right icon" />
-          {this.props.subCategory.name}{" "}
+        <p className='info'>
+          <i className='folder open icon' />{' '}
+          <Link to='/'>{this.props.category.name}</Link>
+          <i className='angle right icon' />
+          {this.props.subCategory.name}{' '}
           <small>{`(${this.props.quizzes.length} quizzes) `}</small>
         </p>
         <form
           onSubmit={this.props.handleSubmit(this.onSubmit)}
-          className="ui form error"
+          className='ui form error'
         >
           {/* <Field
             name="level"
@@ -63,9 +63,9 @@ class Setting extends React.Component {
             component={this.renderFormElement}
           /> */}
           <Field
-            name="order"
-            label="order"
-            options={["random", "sequence"]}
+            name='order'
+            label='order'
+            options={['random', 'sequence']}
             component={this.renderFormElement}
           />
           {/* <Field
@@ -75,9 +75,9 @@ class Setting extends React.Component {
             component={this.renderFormElement}
           /> */}
           <Field
-            name="duration"
-            label="duration"
-            options={["5 sec", "6 sec", "7 sec", "8 sec", "9 sec", "10 sec"]}
+            name='duration'
+            label='duration'
+            options={['5 sec', '6 sec', '7 sec', '8 sec', '9 sec', '10 sec']}
             component={this.renderFormElement}
           />
           {/* <Field
@@ -87,42 +87,42 @@ class Setting extends React.Component {
             component={this.renderFormElement}
           /> */}
           <Field
-            name="numberOfQuestions"
-            label="number of quizzes"
+            name='numberOfQuestions'
+            label='number of quizzes'
             options={[...Array(this.props.quizzes.length).keys()].map(i => ++i)}
             component={this.renderFormElement}
           />
-          <button className="button ui primary">Start</button>
+          <button className='button ui primary'>Start</button>
         </form>
       </div>
     ) : (
-      <Redirect to={{ pathname: "/" }} />
+      <Redirect to={{ pathname: '/' }} />
     );
   }
 }
 
 const validate = formValues => {
   const errors = {};
-  if (!formValues.level || formValues.level === "select") {
-    errors.level = "You must choose level";
+  if (!formValues.level || formValues.level === 'select') {
+    errors.level = 'You must choose level';
   }
-  if (!formValues.order || formValues.order === "select") {
-    errors.order = "You must choose order";
+  if (!formValues.order || formValues.order === 'select') {
+    errors.order = 'You must choose order';
   }
-  if (!formValues.filter || formValues.filter === "select") {
-    errors.filter = "You must choose filter";
+  if (!formValues.filter || formValues.filter === 'select') {
+    errors.filter = 'You must choose filter';
   }
-  if (!formValues.duration || formValues.duration === "select") {
-    errors.duration = "You must choose duration";
+  if (!formValues.duration || formValues.duration === 'select') {
+    errors.duration = 'You must choose duration';
   }
-  if (!formValues.mode || formValues.mode === "select") {
-    errors.mode = "You must choose mode";
+  if (!formValues.mode || formValues.mode === 'select') {
+    errors.mode = 'You must choose mode';
   }
   if (
     !formValues.numberOfQuestions ||
-    formValues.numberOfQuestions === "select"
+    formValues.numberOfQuestions === 'select'
   ) {
-    errors.numberOfQuestions = "You must choose number of questions";
+    errors.numberOfQuestions = 'You must choose number of questions';
   }
   // return errors;
 };
@@ -136,7 +136,7 @@ const mapStateToProps = state => {
 };
 
 const formWrapped = reduxForm({
-  form: "setting",
+  form: 'setting',
   validate
 })(Setting);
 

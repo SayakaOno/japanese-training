@@ -1,18 +1,18 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import history from "../history";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import history from '../history';
 import {
   nextQuiz,
   nextStatus,
   incorrectAnswer,
   finishQuiz,
   spendingTime
-} from "../actions";
+} from '../actions';
 
-const ANSWERING = "answering";
-const SHOWING_ANSWER = "showing_answer";
-const FINISHED = "finished";
+const ANSWERING = 'answering';
+const SHOWING_ANSWER = 'showing_answer';
+const FINISHED = 'finished';
 
 class ShowQuiz extends React.Component {
   constructor(props) {
@@ -47,8 +47,12 @@ class ShowQuiz extends React.Component {
       const spentTimePercentage =
         this.props.spentTime / (this.props.duration * 1000);
       this.bar.current.style.width =
-        Math.round((1 - spentTimePercentage) * 100) + "%";
+        Math.round((1 - spentTimePercentage) * 100) + '%';
     }
+  }
+
+  componentWillUnmount() {
+    this.props.finishQuiz();
   }
 
   showAnswer = () => {
@@ -60,7 +64,7 @@ class ShowQuiz extends React.Component {
     if (this.props.currentQuiz === this.props.quizzes.length - 1) {
       this.props.nextStatus(FINISHED);
       this.props.finishQuiz();
-      history.push("/result");
+      history.push('/result');
     } else {
       this.props.nextStatus(ANSWERING);
       this.props.nextQuiz();
@@ -83,12 +87,12 @@ class ShowQuiz extends React.Component {
   };
 
   handleKeydown = e => {
-    if (this.props.currentStatus === ANSWERING && e.key === "Enter") {
+    if (this.props.currentStatus === ANSWERING && e.key === 'Enter') {
       this.showAnswer();
     } else if (this.props.currentStatus === SHOWING_ANSWER) {
-      if (e.key === "ArrowLeft") {
+      if (e.key === 'ArrowLeft') {
         this.handleIncorrectAnswer();
-      } else if (e.key === "ArrowRight") {
+      } else if (e.key === 'ArrowRight') {
         this.mark();
       }
     }
@@ -97,24 +101,24 @@ class ShowQuiz extends React.Component {
   renderNavigation = () => {
     if (this.props.currentStatus === ANSWERING) {
       return (
-        <div className="show-answer">
-          <button className="button ui primary" onClick={this.showAnswer}>
+        <div className='show-answer'>
+          <button className='button ui primary' onClick={this.showAnswer}>
             Show Answer
           </button>
-          <p className="description">or press "Enter" to show answer!</p>
+          <p className='description'>or press "Enter" to show answer!</p>
         </div>
       );
     } else if (this.props.currentStatus === SHOWING_ANSWER) {
       return (
-        <div className="mark-answer">
+        <div className='mark-answer'>
           <button
-            className="button ui left"
+            className='button ui left'
             onClick={this.handleIncorrectAnswer}
           >
-            <i className="x icon" />{" "}
+            <i className='x icon' />{' '}
           </button>
-          <button className="button ui right" onClick={this.mark}>
-            <i className="check icon" />
+          <button className='button ui right' onClick={this.mark}>
+            <i className='check icon' />
           </button>
         </div>
       );
@@ -125,26 +129,26 @@ class ShowQuiz extends React.Component {
     return this.props.quizzes.length > 0 ? (
       <div
         ref={this.card}
-        className="ui cards"
+        className='ui cards'
         onKeyDown={this.handleKeydown}
-        tabIndex="0"
+        tabIndex='0'
       >
-        <div className="card">
-          <div className="count">
+        <div className='card'>
+          <div className='count'>
             {this.props.currentQuiz + 1}/{this.props.quizzes.length}
           </div>
-          <div className="content">
-            <div className="question">
-              <div className="description">Translate this!</div>
-              <div className="ui huge header">
+          <div className='content'>
+            <div className='question'>
+              <div className='description'>Translate this!</div>
+              <div className='ui huge header'>
                 {this.props.quizzes[this.props.currentQuiz].translation}
               </div>
             </div>
-            <div className="answer">
+            <div className='answer'>
               {this.props.currentStatus === SHOWING_ANSWER && (
                 <React.Fragment>
-                  <div className="description">Answer:</div>
-                  <div className="ui huge header">
+                  <div className='description'>Answer:</div>
+                  <div className='ui huge header'>
                     {this.props.quizzes[this.props.currentQuiz].answer}
                   </div>
                 </React.Fragment>
@@ -153,8 +157,8 @@ class ShowQuiz extends React.Component {
             {this.renderNavigation()}
           </div>
           {this.props.duration && (
-            <div className="ui yellow progress">
-              <div className="bar" ref={this.bar} />
+            <div className='ui yellow progress'>
+              <div className='bar' ref={this.bar} />
             </div>
           )}
         </div>
@@ -162,7 +166,7 @@ class ShowQuiz extends React.Component {
     ) : (
       <Redirect
         to={{
-          pathname: "/"
+          pathname: '/'
         }}
       />
     );

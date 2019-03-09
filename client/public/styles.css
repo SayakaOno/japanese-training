@@ -206,8 +206,8 @@ h2.header {
 }
 @media only screen and (min-width: 576px) {
   .mark-answer button.ui:before {
-    content: "\f04b"; /* this is your text. You can also use UTF-8 character codes as I do here */
-    font-family: "Font Awesome 5 Free";
+    content: '\f04b'; /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: 'Font Awesome 5 Free';
     position: absolute;
     font-size: 100px;
   }
@@ -309,4 +309,18 @@ h2.header {
   .result p.description {
     font-size: 1em;
   }
+}
+
+/* 404 */
+.no-match {
+  text-align: center;
+  margin-top: 35vh;
+  font-size: large;
+}
+.no-match h2 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+.no-match p {
+  margin-bottom: 40px;
 }

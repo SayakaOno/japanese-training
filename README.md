@@ -1,13 +1,13 @@
-# English conversation practice
-![english-conversation-practice](https://user-images.githubusercontent.com/33141219/53157390-46197f80-3576-11e9-86be-75d6c02a2167.gif)<br/>
-English conversation practice is a web application that helps Japanese English learners improve their speaking skills.<br/>
+# Japanese speaking training
+![japanese-speaking-training](https://user-images.githubusercontent.com/33141219/57587732-8a098a00-74be-11e9-827c-62d5d04ebf60.gif)
+Japanese speaking training is a web application that helps Japanese learners improve their speaking skills.<br/>
 (The database information is not in this repository.)<br/>
 [DEMO](https://english-speaking-training.herokuapp.com/)
 
 ## How to use
 - Select the list of the sentences that you want to practice
 - Press "Start" button
-- Translate the Japanese sentence which shows up on your screen into English and say it
+- Translate the English sentence which shows up on your screen into Japanese and say it
 - Evaluate your confidence about the sentence by choosing the button
 - The list of sentences that you are not comfortable with is shown at the end
 

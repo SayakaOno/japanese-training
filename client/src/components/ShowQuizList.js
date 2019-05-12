@@ -85,7 +85,7 @@ class ShowQuizList extends React.Component {
       <React.Fragment>
         <StudiedTime />
         <div className='show-quiz-list ui container form'>
-          <h1>English speaking training</h1>
+          <h1>Japanese speaking training</h1>
           <div className='field'>
             <p>Select category!</p>
             <select
@@ -112,7 +112,7 @@ class ShowQuizList extends React.Component {
                 return (
                   <div
                     key={subCat._id}
-                    className={!this.props.mobileView && 'ui card'}
+                    className={!this.props.mobileView ? 'ui card' : undefined}
                   >
                     {this.props.mobileView ? (
                       this.renderSubCategory(subCat)
@@ -128,7 +128,7 @@ class ShowQuizList extends React.Component {
                       >
                         {this.props.quizList.map(quiz => {
                           if (quiz.subCatId === subCat._id) {
-                            return <li key={quiz._id}>{quiz.translation}</li>;
+                            return <li key={quiz._id}>{quiz.answer}</li>;
                           }
                           return null;
                         })}

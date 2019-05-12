@@ -19,8 +19,8 @@ class Result extends React.Component {
                 {incorrectQuizzes.map(quiz => {
                   return (
                     <li key={quiz._id}>
-                      <p className='en'>{quiz.answer}</p>
-                      <p className='ja'>( {quiz.translation} )</p>
+                      <p className='en'>{quiz.translation}</p>
+                      <p className='ja'>( {quiz.answer} )</p>
                     </li>
                   );
                 })}

@@ -141,7 +141,7 @@ class ShowQuiz extends React.Component {
             <div className='question'>
               <div className='description'>Translate this!</div>
               <div className='ui huge header'>
-                {this.props.quizzes[this.props.currentQuiz].translation}
+                {this.props.quizzes[this.props.currentQuiz].answer}
               </div>
             </div>
             <div className='answer'>
@@ -149,7 +149,7 @@ class ShowQuiz extends React.Component {
                 <React.Fragment>
                   <div className='description'>Answer:</div>
                   <div className='ui huge header'>
-                    {this.props.quizzes[this.props.currentQuiz].answer}
+                    {this.props.quizzes[this.props.currentQuiz].translation}
                   </div>
                 </React.Fragment>
               )}

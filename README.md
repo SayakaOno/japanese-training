@@ -52,4 +52,4 @@ Libraries:
 - Lodash<br/>
 
 database: MongoDB<br/>
-css: Semantic UI
+CSS: Semantic UI

@@ -2,7 +2,7 @@
 ![japanese-speaking-training](https://user-images.githubusercontent.com/33141219/57872577-d4da1900-77c0-11e9-9c5a-c3735b1eb001.gif)<br/>
 Japanese speaking training is a web application that helps Japanese learners improve their speaking skills.<br/>
 (The database information is not in this repository.)<br/>
-[DEMO](https://english-speaking-training.herokuapp.com/)
+[DEMO](https://japanese-training.herokuapp.com)
 
 ## How to use
 - Select the list of the sentences that you want to practice

@@ -29,5 +29,9 @@
     "not op_mini all"
   ],
   "homepage": "https://english-speaking-training.herokuapp.com",
-  "proxy": "http://localhost:5000/"
+  "proxy": "http://localhost:5000/",
+  "devDependencies": {
+    "jest-cli": "^26.0.1",
+    "puppeteer": "^3.0.4"
+  }
 }
